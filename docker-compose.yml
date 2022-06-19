@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  navvis-task-backend:
+    image: 'navvis-task-backend:v1'
+    build:
+      context: ./navvis-task-backend
+    container_name: navvis-task-backend
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/challengedb
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    ports:
+      - 8082:8082
+
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: db
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=challengedb
+    ports:
+      - 5432:5432
+
+  navvis-task-frontend:
+    image: 'navvis-task-frontend:v1'
+    build: ./navvis-task-frontend
+    container_name: navvis-task-frontend
+    ports:
+      - 4200:4200
+    depends_on:
+      - navvis-task-backend 

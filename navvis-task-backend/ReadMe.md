@@ -15,3 +15,9 @@
 * Click the links below to explore rest api.  
   1. http://localhost:8082/v2/api-docs
   2. http://localhost:8082/swagger-ui/index.html (swagger ui)
+
+##Improvements
+1. Testing the REST apis endpoint using JUNIT with coverage of important endpoints
+2. Better configuration for CORS and setting application properties according to environment
+3. Use migration scripts (sql) for creating and modifying models (tables) in the DB
+4. 
